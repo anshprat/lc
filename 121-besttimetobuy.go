@@ -5,46 +5,28 @@ import (
 )
 
 func maxProfit(prices []int) int {
-	//max(prices[len(prices)-1->1]-prices[len(prices)-2->0])
-	//sp , cp, p
-	// sd, cd
-	// profit
-	// var profit []int
-	var maxProfit int = 0
-
-	spMap := make(map[int]int)
-	var dedupPrices []int
-	for t := 0; t < len(prices); t++ {
-		if t > 0 {
-			if dedupPrices[len(dedupPrices)-1] != prices[t] {
-				dedupPrices = append(dedupPrices, prices[t])
-			}
-
-		} else {
-			dedupPrices = append(dedupPrices, prices[t])
-
-		}
+	n := len(prices)
+	if n <= 1 {
+		return 0
 	}
-	numDays := len(dedupPrices) - 1
-	for sd := numDays; sd >= 1; sd = sd - 1 {
-		for cd := sd - 1; cd >= 0; cd = cd - 1 {
-			if dedupPrices[sd] > dedupPrices[cd] {
-				sp := dedupPrices[sd] - dedupPrices[cd]
-				_, spSeen := spMap[sp]
-				if !spSeen {
-					if dedupPrices[sd]-dedupPrices[cd] > maxProfit {
-						maxProfit = int(dedupPrices[sd] - dedupPrices[cd])
-					}
-					spMap[sp] = sp
-				}
-			}
+	var (
+		maxProfit int
+		minPrice  = prices[0]
+	)
+
+	for _, price := range prices {
+		if price-minPrice > maxProfit {
+			maxProfit = price - minPrice
+		}
+		if price < minPrice {
+			minPrice = price
 		}
 	}
 
-	return (maxProfit)
+	return maxProfit
 }
 
 func main() {
-	input := []int{7, 1, 5, 3, 6, 4}
+	input := []int{99, 7, 100, 2, 10}
 	fmt.Println(maxProfit(input))
 }

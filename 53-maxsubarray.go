@@ -19,6 +19,6 @@ func maxSubArray(nums []int) int {
 }
 
 func main() {
-	input := []int{-2, 1, -3, 4, -1, 2, 1, -5, 4}
+	input := []int{5, -1, -1, 9}
 	fmt.Println(maxSubArray(input))
 }

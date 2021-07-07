@@ -21,5 +21,5 @@ func twoSum(nums []int, target int) []int {
 
 func main() {
 	nums := [2]int{3, 3}
-	fmt.Println(twoSum(nums[0:], 6))
+	fmt.Println(twosum.twoSum(nums[0:], 6))
 }

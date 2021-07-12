@@ -2,15 +2,14 @@ package main
 
 import (
 	"fmt"
+	"math/bits"
 )
 
 func getSum(a int, b int) int {
-	if b == 0 {
-		return a
-	}
-	return getSum(a^b, (a&b)<<1)
+	res, _ := bits.Add(uint(a), uint(b), 0)
+	return int(res)
 }
 
 func main() {
-	fmt.Println(getSum(2, 3))
+	fmt.Println(getSum(1, 2))
 }
